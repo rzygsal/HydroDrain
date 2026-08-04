@@ -81,7 +81,7 @@ Windows
 Future versions of HydroDrain will extend the automated workflow with:
 
 - Drainage network generation ✔
-- Pour point snapping
+- Snap geometries to layer
 - Watershed delineation
 - Time of concentration analysis
 - Isochrone generation
