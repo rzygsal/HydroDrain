@@ -92,7 +92,9 @@ The objective is to provide a complete guided hydrological workflow within a sin
 
 ## License
 
-GNU General Public License v2.0 or later (GPL-2.0-or-later)
+HydroDrain is licensed under the GNU General Public License v2.0 or later (GPL-2.0-or-later).
+
+This project includes WhiteboxTools by Dr. John Lindsay, distributed under the MIT License.
 
 ---
 
