@@ -1,61 +1,133 @@
-# HydroDrain – QGIS Plugin
+# <img width="256" height="256" alt="delta" src="https://github.com/user-attachments/assets/b5e8004a-9ac3-44ef-88a6-7f04d16f6370" />
 
-HydroDrain es un complemento para QGIS que genera redes de drenaje hidrológicas a partir de un MDT y un umbral de acumulación. Utiliza algoritmos heredados de WhiteboxTools e integrados dentro del plugin para ejecutar una cadena de procesos hidrológicos de forma automatizada.
+# HydroDrain – Automated Hydrological Workflow for QGIS
 
-## Funcionalidades
+HydroDrain is a QGIS plugin that automatically generates drainage networks from Digital Elevation Models (DEMs). It integrates the official WhiteboxTools Python API and automates the complete hydrological preprocessing workflow within a single interface.
 
-- Selección de MDT desde capa o archivo.
-- Definición de umbral de acumulación (*Channelization threshold*).
-- Eliminación de depresiones (FillDepressions).
-- Cálculo de direcciones de flujo (D8).
-- Acumulación de flujo.
-- Extracción de cauces.
-- Vectorización de la red de drenaje.
-- Botón de ayuda integrado con explicación del umbral.
-- Carga automática de resultados en QGIS.
+---
 
-## Requisitos
+## Features
 
-- QGIS 3.44 LTR (o compatible).
+- Select a DEM from an existing QGIS layer or from disk.
+- User-defined channelization threshold.
+- Automatic depression filling (`FillDepressions`).
+- D8 flow accumulation calculation.
+- D8 flow direction (pointer) generation.
+- Stream extraction.
+- Raster stream vectorization.
+- Automatic loading of output layers into the QGIS project.
+- Built-in help explaining the channelization threshold.
 
-## Instalación
+---
 
-1. Clona o descarga este repositorio.
-2. Copia la carpeta `plugin` en:
-   - Windows: `%APPDATA%/QGIS/QGIS3/profiles/default/python/plugins/HydroDrain`
-3. Reinicia QGIS.
-4. Activa HydroDrain desde el Administrador de complementos.
+## Workflow
 
-## Uso
+HydroDrain currently performs the following workflow:
 
-1. Abre el panel HydroDrain.
-2. Selecciona un MDT desde capa o archivo.
-3. Define el umbral de acumulación. El umbral (*Channelization threshold*) es el número mínimo de celdas que deben drenar hacia un punto para que se forme un cauce; depende del tamaño de celda del MDT y controla la densidad de la red.
-4. (Opcional) Elige rutas de salida para el raster D8 y la red vectorial.
-5. Pulsa **Generar red**.
-6. Los resultados se cargan automáticamente en el panel de capas.
+DEM
+↓
+Fill Depressions
+↓
+D8 Flow Accumulation
+↓
+D8 Pointer
+↓
+Extract Streams
+↓
+Raster Streams to Vector
 
-## Licencia
+Future versions will extend this workflow with:
 
-GPL v2 o posterior.
+- Snap geometries to layer
+- Watershed delineation
+- Isochrone generation
 
-## Autor
+---
 
-Roberto Zygmunt Saldaña (v0.1 2026)
+## Requirements
 
-## Créditos y Atribuciones
+- QGIS 3.44 LTR or later
+- Windows (currently tested)
 
-Este plugin integra componentes de terceros bajo licencias de código abierto y de libre uso con atribución:
+---
 
-### Algoritmos y Motor de Procesamiento (Backend)
-* **WhiteboxTools:** El análisis hidrológico y la extracción de la red de drenaje se realizan utilizando el motor de alto rendimiento programado en Rust [WhiteboxTools](https://whiteboxgeo.com), desarrollado por el Dr. John Lindsay (*Geomorphometry and Hydrogeomatics Research Group* de la Universidad de Guelph). El plugin empaqueta su ejecutable y utiliza su API oficial de Python para ejecutar de forma autónoma los siguientes algoritmos:
-  * `fill_depressions` (Corrección de depresiones en el MDT)
-  * `d8_flow_accumulation` (Acumulación de flujo D8)
-  * `d8_pointer` (Direcciones de flujo D8)
-  * `extract_streams` (Definición de cauces por umbral)
-  * `raster_streams_to_vector` (Vectorización de la red de drenaje)
+## Installation
 
-### Recursos Gráficos
-* **Icono de la Interfaz (Delta/Río):** Icono de [Delta](https://flaticon.es) creado por [Freepik](https://flaticon.es) disponible en [Flaticon](https://flaticon.es).
+1. Download or clone this repository.
+2. Copy the plugin folder into:
 
-Agradecemos profundamente a los autores por desarrollar y compartir estas potentes herramientas con la comunidad SIG de código abierto.
+Windows
+
+%APPDATA%/QGIS/QGIS3/profiles/default/python/plugins/
+
+3. Restart QGIS.
+4. Enable **HydroDrain** from the Plugin Manager.
+
+---
+
+## Usage
+
+1. Open the HydroDrain panel.
+2. Select a DEM.
+3. Define the channelization threshold.
+4. (Optional) Select output locations.
+5. Click **Ejecutar**.
+6. Output layers are automatically added to the current QGIS project.
+
+---
+
+## Roadmap
+
+Future versions of HydroDrain will extend the automated workflow with:
+
+- Drainage network generation ✔
+- Pour point snapping
+- Watershed delineation
+- Time of concentration analysis
+- Isochrone generation
+
+The objective is to provide a complete guided hydrological workflow within a single QGIS plugin.
+
+---
+
+## License
+
+GNU General Public License v2.0 or later (GPL-2.0-or-later)
+
+---
+
+## Author
+
+**Roberto Zygmunt Saldaña**
+
+GIS Technician | Environmental Engineer
+
+---
+
+## Acknowledgements
+
+HydroDrain integrates third-party open-source software.
+
+### WhiteboxTools
+
+Hydrological processing is performed using **WhiteboxTools**, developed by **Dr. John Lindsay** (Geomorphometry and Hydrogeomatics Research Group, University of Guelph).
+
+The plugin uses the official WhiteboxTools Python API to execute:
+
+- FillDepressions
+- D8FlowAccumulation
+- D8Pointer
+- ExtractStreams
+- RasterStreamsToVector
+
+WhiteboxTools:
+https://www.whiteboxgeo.com
+https://github.com/jblindsay/whitebox-tools
+
+### Icons
+
+River/Delta icon created by **Freepik** and distributed via **Flaticon**.
+
+---
+
+© 2026 Roberto Zygmunt Saldaña
